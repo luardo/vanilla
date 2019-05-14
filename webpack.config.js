@@ -1,5 +1,5 @@
 module.exports = {
-  entry: ["./src/index.js", "./src/index.css"],
+  entry: ["./src/index.js", "./src/index.scss"],
   output: {
     path: __dirname,
     publicPath: "/",
@@ -11,23 +11,20 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "script-loader"
+          loader: "babel-loader"
         }
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
           {
             loader: "style-loader"
           },
           {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              importLoaders: 1,
-              sourceMap: true,
-              minimize: true
-            }
+            loader: "css-loader"
+          },
+          {
+            loader: "sass-loader"
           }
         ]
       }
