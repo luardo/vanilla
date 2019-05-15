@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   function init() {
     weather
-      .getCurrent()
+      .getWeather()
       .then(weather => {
         renderDataToTemplate(weather);
-        return unsplash.getPhoto(weather.icon);
+        return unsplash.getRandomPhotoByKeyword(weather.icon);
       })
       .catch(e => {
         console.log("failed to fetch the data. Error:" + e);

@@ -1,7 +1,10 @@
+import service from "./service.js";
+
 import Unsplash from "unsplash-js";
 
-export default class unsplashService {
+export default class unsplashService extends service {
   constructor() {
+    super();
     this.unsplash = new Unsplash({
       applicationId:
         "9e2a6d64ba75f1024dbdca45f8ba3de0fd90043ca33b202fbfd7411deccc7796",
@@ -9,35 +12,11 @@ export default class unsplashService {
     });
   }
 
-  getPhoto(query) {
+  getRandomPhotoByKeyword(query) {
     const { _applicationId } = this.unsplash;
-
-    return new Promise(
-      function(resolve, reject) {
-        const xhr = new XMLHttpRequest();
-        xhr.open(
-          "GET",
-          `https://api.unsplash.com/photos/random?query=${query}&client_id=${_applicationId}`
-        );
-        xhr.onload = function() {
-          if (this.status >= 200 && this.status < 300) {
-            resolve(xhr.response.urls.regular);
-          } else {
-            reject({
-              status: this.status,
-              statusText: xhr.statusText
-            });
-          }
-        };
-        xhr.onerror = function() {
-          reject({
-            status: this.status,
-            statusText: xhr.statusText
-          });
-        };
-        xhr.responseType = "json";
-        xhr.send();
-      }.bind(this)
+    const requestUrl = `https://api.unsplash.com/photos/random?query=${query}&client_id=${_applicationId}`;
+    return this.getRequest("GET", requestUrl).then(
+      response => response.urls.regular
     );
   }
 }
