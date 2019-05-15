@@ -6,9 +6,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const unsplash = new unsplashService();
 
   function setTextInDiv(elementId, text) {
-    if (!elementId) {
-      return false;
-    }
     let element = document.getElementById(elementId);
 
     if (!element) {
@@ -32,14 +29,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function init() {
     weather
       .getCurrent()
-      .then(currentWeather => {
-        renderDataToTemplate(currentWeather);
-        return currentWeather.icon;
+      .then(weather => {
+        renderDataToTemplate(weather);
+        return unsplash.getPhoto(weather.icon);
       })
-      .then(weatherStatusIcon => {
-        unsplash
-          .getPhoto(weatherStatusIcon)
-          .then(image => setBackgroundColor(image));
+      .catch(e => {
+        console.log("failed to fetch the data. Error:" + e);
+      })
+      .then(image => setBackgroundColor(image))
+      .catch(e => {
+        console.log("failed to fetch the unsplash image. Error:" + e);
       });
   }
 
