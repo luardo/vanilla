@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "http2": "^3.3.7",
+    "unsplash-js": "^5.0.0",
     "script-loader": "^0.7.2",
     "webpack-dev-server": "^3.3.1"
   },

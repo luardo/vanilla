@@ -9,33 +9,37 @@
     </head>
 
     <body>
-        <h1>Tell me the current weather today</h1>
-
-
         <div class="weather">
-            <div id="city" class="weather__city">
-                Berlin
+            <div id="background-image" class="weather__background">
             </div>
-            <p id="summary" class="weather__summary">
-                Windy and Mostly Cloudy
-            </p>
+            <section class="weather__wrapper">
+                <div id="temperature" class="weather__temperature
+                    weather--left-column
+                    font-xlarge">
+                </div>
 
-            <small id="date"></small>
+                <div class="weather--right-column weather__details">
+                    <div id="summary" class="weather__details-item">
+                        Windy and Mostly Cloudy
+                    </div>
 
-            <div class="weather__icon">
+                    <div id="dateTime" class="weather__details-item"></div>
+                    <div class="weather__details-item">
+                        Wind speed: <span id="wind"></span>
+                    </div>
+                    <div class="weather__details-item">
+                        Humidity: <span id="humidity"></span>
+                    </div>
+                </div>
 
-            </div>
-
-            <div id="current" class="weather__current-temperature">
-                14°
-            </div>
-
-            <div id="warning">
-
-            </div>
+                <div class="weather__icon"></div>
+            </section>
+            <section class="weather__footer">
+                <div id="warning" class="weather__details-item">
+                </div>
+            </section>
             <div class="weather__max-temp"></div>
             <div class="weather__min-temp"></div>
-
         </div>
         <script src="/bundle.js"></script>
     </body>

@@ -1,6 +1,4 @@
-import { get } from "https";
-
-export default class WeatherService {
+export default class darkskyService {
   constructor() {
     this.proxy = "https://cors-anywhere.herokuapp.com/";
     this.baseUrl = "https://api.darksky.net/forecast/";
@@ -59,10 +57,12 @@ export default class WeatherService {
     return this.getRequest().then(({ currently, daily }) => {
       return {
         temperature: Math.round(currently.temperature) + "°",
-        summary: currently.summary,
         city: "Berlixn",
+        icon: currently.icon,
         dateTime: this.getDate(currently.time),
-        warning: daily.summary
+        warning: daily.summary,
+        wind: currently.windSpeed,
+        humidity: currently.humidity + "%"
       };
     });
   }
